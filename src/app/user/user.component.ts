@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { type User } from './user.model';
 
 // type User = {
 //   id: string;
@@ -7,11 +8,6 @@ import { CommonModule } from '@angular/common';
 //   name: string;
 // };
 
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
 @Component({
   selector: 'app-user',
   imports: [CommonModule],
@@ -24,8 +20,8 @@ export class UserComponent {
   // @Input({ required: true }) name!: string;
   @Input() user!: User;
   @Output() select = new EventEmitter<string>();
+  @Input({ required: true }) selected!: boolean;
   // select = output<string>();
-
   get imagePath() {
     return 'assets/user/' + this.user.avatar;
   }

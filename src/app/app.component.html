@@ -5,7 +5,11 @@
   <ul id="users">
     @for (user of users; track user.id) {
     <li>
-      <app-user [user]="user" (select)="onSelectUser($event)"></app-user>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)"
+      ></app-user>
     </li>
     }
   </ul>
@@ -19,7 +23,7 @@
 
   <!-- This is recomended way and new way in newer angular version -->
   @if (selectedUser) {
-  <app-tasks [name]="selectedUser.name" />
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
   } @else {
   <h2 id="fallback">Select user to see their tasks!</h2>
   }
